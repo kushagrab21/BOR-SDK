@@ -30,3 +30,17 @@ def test_verify_functionality():
     proof = run.finalize()
     assert run.verify() is True
 
+from bor.decorators import step
+
+@step(name="ingest_csv")
+def ingest(s, C, V):
+    return {"rows": [1,2,3]}
+
+def test_borrun_uses_decorator_name():
+    run = BoRRun(S0=None, C={}, V="v1.0")
+    run.add_step(ingest)
+    proof = run.finalize()
+    assert len(proof.master) == 64
+    # Check that internal step object has the right name
+    assert run.steps[0].fn_name == "ingest_csv"
+

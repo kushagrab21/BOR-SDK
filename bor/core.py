@@ -67,7 +67,9 @@ class BoRRun:
         except Exception as e:
             raise DeterminismError(f"Function {fn.__name__} failed deterministically: {e}")
 
-        step = BoRStep(fn.__name__, prev_state, self.config, self.code_version)
+        # Prefer decorator-provided name if present
+        fn_name = getattr(fn, "__bor_step_name__", fn.__name__)
+        step = BoRStep(fn_name, prev_state, self.config, self.code_version)
         step.compute_fingerprint()
         self.steps.append(step)
         self._final_state = output_state
