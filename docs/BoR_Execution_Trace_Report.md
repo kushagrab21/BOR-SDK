@@ -61,17 +61,17 @@ graph TD
     B --> E[hash_utils]
     E --> F[canonical_bytes]
     E --> G[content_hash]
-    B --> H[@step decorator]
+    B --> H["@step decorator"]
     H --> I[Signature Validation]
     D --> J[verify_proof]
     J --> K[store.ProofStore]
     K --> L[JSON Storage]
     K --> M[SQLite Storage]
     
-    style B fill:#e1f5ff
-    style D fill:#ffe1e1
-    style E fill:#e1ffe1
-    style J fill:#fff5e1
+    style B fill:#0066cc,stroke:#003d7a,color:#fff
+    style D fill:#cc3333,stroke:#801f1f,color:#fff
+    style E fill:#339933,stroke:#1f5e1f,color:#fff
+    style J fill:#cc9900,stroke:#806000,color:#fff
 ```
 
 The architecture follows a layered design where user code interacts with high-level APIs (`BoRRun`, `@step`), which delegate to lower-level primitives (hashing, canonicalization). The verification layer operates independently, enabling third-party validation without trusting the original executor.
@@ -461,10 +461,10 @@ graph LR
     H2 --> CONCAT
     CONCAT --> HMASTER["HMASTER = SHA256(h₁||h₂)"]
     
-    style S0 fill:#e1f5ff
-    style S1 fill:#e1f5ff
-    style S2 fill:#e1f5ff
-    style HMASTER fill:#ffe1e1
+    style S0 fill:#0066cc,stroke:#003d7a,color:#fff
+    style S1 fill:#0066cc,stroke:#003d7a,color:#fff
+    style S2 fill:#0066cc,stroke:#003d7a,color:#fff
+    style HMASTER fill:#cc3333,stroke:#801f1f,color:#fff
 ```
 
 ### Logical Equivalence Theorem
@@ -622,9 +622,9 @@ graph TD
     D --> D2["Corrupted proof file"]
     D --> D3["Tampered HMASTER"]
     
-    style B fill:#ffe1e1
-    style C fill:#fff5e1
-    style D fill:#e1f5ff
+    style B fill:#cc3333,stroke:#801f1f,color:#fff
+    style C fill:#cc9900,stroke:#806000,color:#fff
+    style D fill:#0066cc,stroke:#003d7a,color:#fff
 ```
 
 ### Exception Details
@@ -701,9 +701,9 @@ flowchart TD
     ERROR --> LOG[Log Discrepancy]
     LOG --> HALT[Verification Failed]
     
-    style SUCCESS fill:#e1ffe1
-    style ERROR fill:#ffe1e1
-    style HALT fill:#ffe1e1
+    style SUCCESS fill:#339933,stroke:#1f5e1f,color:#fff
+    style ERROR fill:#cc3333,stroke:#801f1f,color:#fff
+    style HALT fill:#cc3333,stroke:#801f1f,color:#fff
 ```
 
 ### Error Recovery Strategies
@@ -746,9 +746,9 @@ graph TD
     RECOMPUTE --> COMPARE[Compare Hashes]
     COMPARE --> RESULT[✅/❌]
     
-    style JSON fill:#fff5e1
-    style SQLITE fill:#e1f5ff
-    style VERIFY fill:#ffe1e1
+    style JSON fill:#cc9900,stroke:#806000,color:#fff
+    style SQLITE fill:#0066cc,stroke:#003d7a,color:#fff
+    style VERIFY fill:#cc3333,stroke:#801f1f,color:#fff
 ```
 
 ### JSON Storage
@@ -876,8 +876,8 @@ flowchart TD
     COMPARE -->|Yes| SUCCESS[Print: ✅ Verified]
     COMPARE -->|No| FAIL[Raise: HashMismatchError]
     
-    style SUCCESS fill:#e1ffe1
-    style FAIL fill:#ffe1e1
+    style SUCCESS fill:#339933,stroke:#1f5e1f,color:#fff
+    style FAIL fill:#cc3333,stroke:#801f1f,color:#fff
 ```
 
 ### CLI Components
@@ -972,7 +972,7 @@ graph TD
     DIFF_H --> DIFF_MASTER[Different HMASTER]
     DIFF_CONCAT --> DIFF_MASTER
     
-    style DIFF_MASTER fill:#ffe1e1
+    style DIFF_MASTER fill:#cc3333,stroke:#801f1f,color:#fff
 ```
 
 **Example Sensitivity**:
@@ -1065,11 +1065,11 @@ graph TD
     N --> P[Trust Established]
     O --> Q[Investigation Required]
     
-    style A fill:#e1f5ff
-    style E fill:#fff5e1
-    style M fill:#ffe1e1
-    style N fill:#e1ffe1
-    style O fill:#ffe1e1
+    style A fill:#0066cc,stroke:#003d7a,color:#fff
+    style E fill:#cc9900,stroke:#806000,color:#fff
+    style M fill:#cc3333,stroke:#801f1f,color:#fff
+    style N fill:#339933,stroke:#1f5e1f,color:#fff
+    style O fill:#cc3333,stroke:#801f1f,color:#fff
 ```
 
 ### Phase-by-Phase Breakdown
@@ -1135,8 +1135,8 @@ graph LR
     J -->|Yes| K[Consensus Achieved]
     J -->|No| L[Divergence Detected]
     
-    style K fill:#e1ffe1
-    style L fill:#ffe1e1
+    style K fill:#339933,stroke:#1f5e1f,color:#fff
+    style L fill:#cc3333,stroke:#801f1f,color:#fff
 ```
 
 **Consensus Property**: If n verifiers independently compute identical HMASTER values, the reasoning is verified with probability 1 - (2⁻²⁵⁶)ⁿ.
