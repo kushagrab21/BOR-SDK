@@ -1,0 +1,25 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "bor-sdk"
+version = "0.1.0-beta"
+description = "Blockchain of Reasoning (BoR): Deterministic Proof-of-Logic SDK"
+readme = "README.md"
+license = { text = "MIT" }
+authors = [{ name = "Kushagra Bhatnagar" }]
+requires-python = ">=3.9"
+keywords = ["deterministic", "blockchain", "reasoning", "verifiability"]
+classifiers = [
+  "Programming Language :: Python :: 3",
+  "License :: OSI Approved :: MIT License",
+  "Operating System :: OS Independent",
+]
+dependencies = []
+
+[project.urls]
+Homepage = "https://github.com/kushagra-bhatnagar/bor-sdk"
+Documentation = "https://github.com/kushagra-bhatnagar/bor-sdk#readme"
+Issues = "https://github.com/kushagra-bhatnagar/bor-sdk/issues"
+
