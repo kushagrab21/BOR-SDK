@@ -692,8 +692,8 @@ verify_proof(proof_file, S0, {"offset": 999}, V, stages)
 flowchart TD
     START[verify_proof] --> LOAD[Load Stored Proof]
     LOAD --> REPLAY[Replay Reasoning Chain]
-    REPLAY --> RECOMPUTE[Recompute HMASTER']
-    RECOMPUTE --> COMPARE{HMASTER' == HMASTER?}
+    REPLAY --> RECOMPUTE["Recompute HMASTER'"]
+    RECOMPUTE --> COMPARE{"HMASTER' == HMASTER?"}
     
     COMPARE -->|Yes| SUCCESS[✅ Return True]
     COMPARE -->|No| ERROR[❌ Raise HashMismatchError]
@@ -857,9 +857,9 @@ flowchart TD
     IMPORT1 --> GET1[Get function: add]
     IMPORT1 --> GET2[Get function: square]
     
-    PARSE_JSON --> S0[S₀ = 3]
-    PARSE_JSON --> CONFIG[C = \{offset: 2\}]
-    PARSE --> VERSION[V = v1.0]
+    PARSE_JSON --> S0["S₀ = 3"]
+    PARSE_JSON --> CONFIG["C = {offset: 2}"]
+    PARSE --> VERSION["V = v1.0"]
     
     S0 --> REPLAY[BoRRun Replay]
     CONFIG --> REPLAY
@@ -868,9 +868,9 @@ flowchart TD
     GET2 --> REPLAY
     
     REPLAY --> RUN[Execute Chain]
-    RUN --> FINALIZE[Compute HMASTER']
+    RUN --> FINALIZE["Compute HMASTER'"]
     
-    EXTRACT --> COMPARE{HMASTER' == HMASTER?}
+    EXTRACT --> COMPARE{"HMASTER' == HMASTER?"}
     FINALIZE --> COMPARE
     
     COMPARE -->|Yes| SUCCESS[Print: ✅ Verified]
@@ -957,10 +957,10 @@ If (S₀, C, V, [f₁...fₙ]) ≠ (S₀', C', V', [f₁'...fₙ']):
 
 ```mermaid
 graph TD
-    CHANGE[Change Type] --> INPUT[Input Change: S₀ → S₀']
-    CHANGE --> CONFIG[Config Change: C → C']
-    CHANGE --> VERSION[Version Change: V → V']
-    CHANGE --> FUNCTION[Function Change: f_i → f_i']
+    CHANGE[Change Type] --> INPUT["Input Change: S₀ → S₀'"]
+    CHANGE --> CONFIG["Config Change: C → C'"]
+    CHANGE --> VERSION["Version Change: V → V'"]
+    CHANGE --> FUNCTION["Function Change: f_i → f_i'"]
     CHANGE --> ORDER[Step Order Change]
     
     INPUT --> DIFF_H[Different h_i]
@@ -1044,20 +1044,20 @@ THEN:
 
 ```mermaid
 graph TD
-    A[Developer: Write Code] --> B[Define Steps: @step]
-    B --> C[Initialize: BoRRun S₀,C,V]
-    C --> D[Execute: add_step × n]
+    A[Developer: Write Code] --> B["Define Steps: @step"]
+    B --> C["Initialize: BoRRun S₀,C,V"]
+    C --> D["Execute: add_step × n"]
     D --> E[Finalize: Compute HMASTER]
     E --> F[Persist: ProofStore.save]
     
     F --> G[Storage: JSON / SQLite]
     
     G --> H[Verifier: Load Proof]
-    H --> I[Parse: Extract S₀,C,V]
+    H --> I["Parse: Extract S₀,C,V"]
     I --> J[Import: Stage Functions]
     J --> K[Replay: Execute Chain]
-    K --> L[Recompute: HMASTER']
-    L --> M{Compare: HMASTER' == HMASTER?}
+    K --> L["Recompute: HMASTER'"]
+    L --> M{"Compare: HMASTER' == HMASTER?"}
     
     M -->|Yes| N[✅ Verified]
     M -->|No| O[❌ Mismatch Detected]
@@ -1123,9 +1123,9 @@ graph LR
     C --> E[Verifier 2: Machine C]
     C --> F[Verifier 3: Machine D]
     
-    D --> G[Recompute HMASTER']
-    E --> H[Recompute HMASTER']
-    F --> I[Recompute HMASTER']
+    D --> G["Recompute HMASTER'"]
+    E --> H["Recompute HMASTER'"]
+    F --> I["Recompute HMASTER'"]
     
     B --> J{All Match?}
     G --> J
